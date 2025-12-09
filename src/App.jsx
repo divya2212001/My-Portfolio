@@ -1,5 +1,6 @@
 import SectionHeading from './components/SectionHeading.jsx';
 import { hero, education, skills, projects, certifications, socials } from './data.js';
+import profile from "../assets/image.png";
 import './App.css';
 
 const App = () => {
@@ -23,7 +24,7 @@ const App = () => {
           <p>AI & ML Undergraduate</p>
           <p>React Developer</p>
           <p>Problem Solver</p>
-          <img src="image.png" alt="profile" width="350" height="350" />
+          <img src={profile} alt="profile" width="350" />
         </div>
       </header>
 
