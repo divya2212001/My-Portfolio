@@ -14,7 +14,7 @@ export const education = [
     title: 'B.Tech, AI & ML',
     school: 'Newton School of Technology - ADYPU',
     period: '2024 - 2028',
-    score: 'GPA 8.05 / 10',
+    score: 'GPA 8.14 / 10',
   },
   {
     title: 'Intermediate (Class XII)',

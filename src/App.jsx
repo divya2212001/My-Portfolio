@@ -22,7 +22,7 @@ const App = () => {
         </div>
         <div className="hero__accent-card">
           <p>AI & ML Undergraduate</p>
-          <p>React Developer</p>
+          <p>Software Developer</p>
           <p>Problem Solver</p>
           <img src={profile} alt="profile" width="350" />
         </div>
