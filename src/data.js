@@ -1,143 +1,62 @@
-export const hero = {
+export const profile = {
   name: 'Divyanjali Gopisetty',
-  tagline: 'Emerging AI & ML Engineer • Full Stack Developer',
-  intro:
-    'Passionate about leveraging AI and ML to transform data-driven insights into innovative solutions. Hands-on experience in building predictive ML models, data analysis workflows, and interactive web applications. Proficient in Python, Pandas, NumPy, Scikit-learn, React, JavaScript, HTML, and CSS.',
-  cta: [
-    { label: 'View Projects', href: '#projects' },
-    { label: 'Download Resume', href: 'https://drive.google.com/file/d/1P8zximfpMIce-x7YUVkoWZPRkAE1W8LV/view?usp=sharing' },
+  email: 'gopisetty.divyanjali@adypu.edu.in',
+  resume: '/Resume-Divyanjali%20Gopisetty.pdf',
+  socials: [
+    { label: 'GitHub', href: 'https://github.com/divya2212001' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/divyanjali-gopisetty-514250344' },
+    { label: 'LeetCode', href: 'https://leetcode.com/u/divya2212/' },
   ],
-};
-
-export const education = [
-  {
-    title: 'B.Tech, AI & ML',
-    school: 'Newton School of Technology - ADYPU',
-    period: '2024 - 2028',
-    score: 'GPA 8.14 / 10',
-  },
-  {
-    title: 'Intermediate (Class XII)',
-    school: 'FIITJEE',
-    period: '2022 - 2024',
-    score: '94%',
-  },
-  {
-    title: 'Matriculation (Class X)',
-    school: 'Sri Chaitanya',
-    period: '2021 - 2022',
-    score: '98%',
-  },
-];
-
-export const skills = {
-  core: ['Python', 'JavaScript', 'HTML', 'CSS', 'Machine Learning', 'Data Structures & Algorithms', 'React.js', 'Node.js'],
-  tools: ['NumPy', 'Pandas', 'Matplotlib', 'MongoDB', 'MySQL', 'Express.js', 'Next.js', 'Prisma ORM', 'Git & GitHub', 'REST APIs', 'Responsive Design'],
 };
 
 export const projects = [
   {
-    title: 'Historical Art Blog',
-    description:
-      'Content-focused archive for storytelling about art history with accessibility-first typography.',
-    code: 'https://github.com/Saniya777-byte/Art-history-blog.git',
-    demo: 'https://saniya777-byte.github.io/Art-history-blog/',
-    stack: ['HTML', 'CSS', 'Content Strategy'],
+    id: 'viora', number: '01', title: 'Viora AI', category: 'Computer Vision', subtitle: 'Perceptual image quality, made explainable.',
+    description: 'A hybrid CNN and computer-vision system for perceptual image-quality prediction and defect analysis.',
+    stack: ['ResNet18', 'OpenCV', 'Grad-CAM', 'FastAPI', 'MongoDB', 'React'],
+    metrics: [{ label: 'MAE', value: 0.2883, max: 0.5, note: 'Mean absolute error across 1,511 test samples; lower is better.' }, { label: 'RMSE', value: 0.3649, max: 0.5, note: 'Root mean squared error; penalizes larger prediction errors.' }, { label: 'PLCC', value: 0.8566, max: 1, note: 'Pearson correlation with human quality scores; higher is better.' }, { label: 'SRCC', value: 0.8156, max: 1, note: 'Spearman rank correlation with human quality scores; higher is better.' }],
+    overview: 'The model combines ResNet18 feature representations with eight handcrafted visual features. Learned features capture rich image patterns while explicit measures provide interpretable signals about image structure and defects.',
+    architecture: ['Image input', 'ResNet18 features', '8 visual features', 'Hybrid prediction', 'Score + Grad-CAM'],
+    details: ['Why hybrid features: convolutional representations learn useful patterns from data, while handcrafted visual signals add complementary measurements.', 'Explainability: Grad-CAM highlights regions that influence the network. This portfolio describes the method; it does not present fabricated model outputs.', 'Serving path: React interface → FastAPI inference → prediction and Grad-CAM → MongoDB analysis history.'],
   },
   {
-    title: 'Dice & Grid Game',
-    description:
-      'Interactive dice roller with dynamic grid challenges that reinforce component state and logic.',
-    code: 'https://github.com/divya2212001/react-project-game.git',
-    demo: 'https://react-game-project-41cau41k9-divya2212001s-projects.vercel.app/',
-    stack: ['React', 'Vite', 'State Management'],
+    id: 'cybertriage', number: '02', title: 'CyberTriage-LM', category: 'Generative AI', subtitle: 'Adapting a language model for cyber triage.',
+    description: 'A cybersecurity language-model research project exploring parameter-efficient supervised fine-tuning.',
+    stack: ['Qwen2.5-7B', 'LoRA / QLoRA', 'Unsloth', 'PyTorch', '4-bit quantization'],
+    metrics: [{ label: 'Records prepared', value: 5000, max: 5000, display: '5,000', note: 'Cybersecurity records in the dataset pipeline.' }, { label: 'Parameters trained', value: 0.53, max: 1, display: '0.53%', note: 'Share of model parameters trained using parameter-efficient adaptation.' }],
+    overview: 'Research internship in Generative AI at iHub-Data, IIIT Hyderabad (June–August 2026). The project uses Qwen2.5-7B with supervised fine-tuning and low-rank adaptation techniques.',
+    architecture: ['5,000 records', 'Prepare & curate', 'Qwen2.5-7B 4-bit', 'LoRA / QLoRA SFT', 'Task-adapted model'],
+    details: ['Why quantize: 4-bit weights reduce memory requirements during model loading and fine-tuning.', 'Why LoRA: low-rank adapter weights allow targeted updates while keeping most base-model weights frozen. Training covered 0.53% of parameters.', 'Evaluation: inspect data quality, held-out task performance, and failure cases before drawing conclusions. No accuracy or benchmark result is reported here because none is documented.'],
   },
   {
-    title: 'Covid Data Analysis',
-    description:
-      'Analyzed COVID-19 case data using Benfords Law to check if the numbers followed a natural pattern. Used Pandas and Matplotlib.',
-    code: 'https://github.com/divya2212001/Covid-Data-Analysis',
-    demo: '',
-    stack: ['Python', 'Pandas', 'Matplotlib'],
+    id: 'waterlogging', number: '03', title: 'Road Waterlogging Detection', category: 'Computer Vision', subtitle: 'From road footage to measurable detections.',
+    description: 'A video-analytics workflow for detecting road waterlogging, spanning frame preparation, annotation, training, and validation.',
+    stack: ['YOLO', 'Python', 'OpenCV', 'Label Studio', 'FFmpeg'],
+    metrics: [{ label: 'mAP@50', value: 70.28, max: 100, display: '70.28%', note: 'Mean average precision at IoU threshold 0.50.' }, { label: 'mAP@50–95', value: 30.13, max: 100, display: '30.13%', note: 'Average mAP across IoU thresholds from 0.50 to 0.95.' }, { label: 'Precision', value: 62.23, max: 100, display: '62.23%', note: 'Share of predicted detections that are correct.' }, { label: 'Recall', value: 70.65, max: 100, display: '70.65%', note: 'Share of ground-truth objects detected by the model.' }],
+    overview: 'Computer Vision research internship at iHub-Data, IIIT Hyderabad (March–May 2026). Work covered video preprocessing and frame extraction, dataset annotation, YOLO training, and validation.',
+    architecture: ['Road video', 'FFmpeg frames', 'OpenCV prep', 'Label Studio', 'YOLO train / validate'],
+    details: ['mAP@50 uses a single, more permissive overlap threshold. mAP@50–95 averages across stricter thresholds, so it reflects localization quality more broadly.', 'Precision and recall describe different error tradeoffs: precision concerns false detections; recall concerns missed instances.', 'Next experiments could examine lighting and weather slices, annotation consistency, and threshold selection. No trained weights or live inference demo are included here.'],
   },
   {
-    title: 'GitHub Profile Analyzer',
-    description:
-      'React dashboard that fetches live profile stats via GitHub REST APIs with clean charts and stateful UI.',
-    code: 'https://github.com/divya2212001/GIthub-Profile-Analyzer.git',
-    demo: 'https://g-ithub-profile-analyzer.vercel.app/',
-    stack: ['React', 'REST API', 'CSS Grid'],
-  },
-    {
-    title: 'Personalized-Academic-Tracker',
-    description:
-      'Contributed to an open-source project using frontend and backend technologies. Features help students track progress, manage tasks, and view performance insights.',
-    code: 'https://github.com/divya2212001/Personalized-Academic-Tracker',
-    demo: 'https://personalized-academic-tracker.vercel.app/',
-    stack: ['React', 'Node.js', 'MongoDB'],
-  },
-  {
-    title: 'Salary-Prediction',
-    description:
-      'Developed a salary prediction model using Linear Regression in Python. Analyzed and visualized data to understand the relationship between experience and salary.',
-    code: 'https://github.com/divya2212001/Salary-Prediction',
-    demo: '',
-    stack: ['Python', 'Pandas', 'Scikit-learn', 'Matplotlib'],
-  },
-
-  {
-    title: 'Segmentation Challenge',
-    description:
-      'Performed customer segmentation using clustering techniques on real-world datasets. Implemented data preprocessing, feature engineering, and unsupervised learning models in Python to generate meaningful segment groups.',
-    code: 'https://github.com/divya2212001/Segmentation-Challenge',
-    demo: '',
-    stack: ['Python', 'Pandas', 'NumPy', 'Scikit-learn'],
-  },
-  {
-    title: 'Global Air Pollution',
-    description:
-      'Analyzed national, continental, and global air quality datasets using data mining techniques to identify pollution trends, hotspots, and key contributing factors. Built visualizations and comparative insights using Python, Pandas, NumPy, Scikit-Learn, Matplotlib, and Seaborn.',
-    code: 'https://github.com/divya2212001/Global-Air-Pollution',
-    demo: '',
-    stack: ['Python', 'Pandas', 'NumPy', 'Scikit-learn', 'Matplotlib', 'Seaborn'],
-  },
-  
-];
-
-export const certifications = [
-  {
-    title: 'AI Azure',
-    issuer: 'Edunet Foundation',
-    summary:
-      'Successfully completed a 4-week internship on AI Azure.',
-    link: 'https://drive.google.com/file/d/...',
-  },
-  {
-    title: 'AI Engineer',
-    issuer: 'Coursera',
-    summary:
-      'Completed the AI Foundations Specialization offered by Andrew Ng, including AI For Everyone, Generative AI For Everyone, and ChatGPT Prompt Engineering for Developers.',
-    link: 'https://coursera.org/share/d2c89d2fe187c121784d34540df17b48',
-  },
-  {
-    title: 'Nirmaan Web Design Competition',
-    issuer: 'Newton School of Technology',
-    summary:
-      'Participated in Nirmaan, a web design competition at my college, as part of a team of four, collaboratively developed a functional and visually appealing website using HTML, CSS, and design principles.',
-    link: 'https://drive.google.com/file/d/1c7JBwB5OBsRmShif0xVxx-F39J3fe46i/view?usp=sharing',
-  },
-  {
-    title: 'How Things Work: An Introduction to Physics',
-    issuer: 'University of Virginia',
-    summary:
-      'Explored Newtonian mechanics, energy, and electromagnetism with real-world intuition.',
-    link: 'https://coursera.org/share/9c1dd53dfe211a172769bc2f61591420',
+    id: 'health', number: '04', title: 'Agentic Health Support System', category: 'Applied ML', subtitle: 'A prediction workflow with a separate support layer.',
+    description: 'An ML risk-prediction workflow paired with retrieval-augmented, multi-agent assistance and automated report generation.',
+    stack: ['Random Forest', 'LangGraph', 'FAISS', 'Hugging Face', 'Streamlit'],
+    metrics: [{ label: 'Accuracy', value: 91.8, max: 100, display: '91.8%', note: 'Random Forest accuracy with five-fold cross-validation.' }, { label: 'F1-score', value: 91.5, max: 100, display: '91.5%', note: 'Random Forest F1-score with five-fold cross-validation.' }, { label: 'ROC-AUC', value: 95.7, max: 100, display: '95.7%', note: 'Random Forest ROC-AUC with five-fold cross-validation.' }],
+    overview: 'Classical prediction models (Random Forest, Logistic Regression, Decision Tree) are evaluated separately from the LLM-based retrieval and report-generation workflow.',
+    architecture: ['Risk input', 'ML risk model', 'LangGraph flow', 'FAISS retrieval', 'Clinical report'],
+    details: ['Risk prediction: compare three models using five-fold cross-validation. Random Forest results are shown above.', 'Assistance layer: LangChain and LangGraph coordinate retrieval from FAISS using Hugging Face embeddings, followed by generated support and report content.', 'The ML prediction and generated assistance are distinct components. This system is a project prototype and does not replace qualified medical professionals.'],
   },
 ];
 
-export const socials = [
-  { label: 'GitHub', href: 'https://github.com/divya2212001' },
-  { label: 'LeetCode', href: 'https://leetcode.com/u/divya2212/' },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/divyanjali-gopisetty-514250344' },
-  { label: 'Email', href: 'mailto:divyagopisetty380@gmail.com' },
+export const skillGroups = [
+  { label: 'AI / ML', skills: ['Machine Learning', 'Deep Learning', 'Computer Vision', 'Generative AI', 'LLM Fine-tuning', 'RAG', 'Model Evaluation'] },
+  { label: 'Engineering', skills: ['Python', 'JavaScript', 'React', 'FastAPI', 'Node.js', 'REST APIs'] },
+  { label: 'Data', skills: ['SQL', 'ClickHouse', 'Pandas', 'NumPy', 'MongoDB', 'MySQL', 'BI Dashboards'] },
+  { label: 'Tools', skills: ['PyTorch', 'Scikit-learn', 'OpenCV', 'LangChain', 'FAISS', 'Git', 'Streamlit'] },
+];
+
+export const experience = [
+  { date: 'MAR — MAY 2026', org: 'iHub-Data · IIIT Hyderabad', role: 'Research Intern — Computer Vision', detail: 'Built a road-waterlogging detection workflow spanning video preprocessing, frame extraction, dataset annotation, YOLO training, and validation. See case study 03 for evaluation metrics.' },
+  { date: 'JUN — AUG 2026', org: 'iHub-Data · IIIT Hyderabad', role: 'Research Intern — Generative AI', detail: 'Worked on CyberTriage-LM using Qwen2.5-7B, 4-bit quantization, and LoRA / QLoRA supervised fine-tuning with a 5,000-record dataset pipeline.' },
+  { date: 'JUN 2026 — PRESENT', org: 'Fire AI', role: 'Data Analytics Engineer', detail: 'Optimized 100+ ClickHouse SQL queries; built 60+ BI dashboards and 60+ KPI widgets; validated and reconciled data across 5+ seller platforms.' },
 ];
