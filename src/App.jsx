@@ -26,7 +26,41 @@ function Metrics({ items }) {
   </div>)}</div>;
 }
 
+const architectureNodes = [
+  { id: 'frontend', title: 'React + Vite frontend', detail: 'Academic dashboard, prediction page, and API integration.' },
+  { id: 'backend', title: 'Node.js + Express backend', detail: 'JWT authentication and protected academic-data APIs for grades, events, and profiles.' },
+  { id: 'database', title: 'MongoDB + Mongoose', detail: 'Stores academic profiles, grades, and event data.' },
+  { id: 'service', title: 'Python + Flask ML service', detail: 'Receives prediction inputs without JWT authentication, as documented in the project brief.' },
+  { id: 'model', title: 'Random Forest + feature scaler', detail: 'Engineers and scales input features before estimating an exam score.' },
+  { id: 'response', title: 'Prediction + recommendations', detail: 'Returns a score estimate and personalized study recommendations; history stays in browser local storage.' },
+];
+
+function AcademicCaseStudy({ project }) {
+  const [selectedNode, setSelectedNode] = useState('frontend');
+  const selected = architectureNodes.find(node => node.id === selectedNode);
+  return <div className="academic-case">
+    <div className="academic-overview-grid"><article><span className="micro-label">THE PROBLEM</span><p>{project.problem}</p></article><article><span className="micro-label">WHAT IT DOES</span><ul>{project.features.map(item=><li key={item}>{item}</li>)}</ul></article></div>
+    <section className="academic-block"><div className="academic-block-heading"><div><span className="micro-label">01 / SYSTEM DESIGN</span><h4>Two paths through one product.</h4></div><p>Academic records use JWT-protected Node APIs. Prediction requests go directly from the frontend to Flask and are documented as unauthenticated.</p></div>
+      <div className="architecture-lanes"><div className="architecture-lane protected"><span className="lane-label">AUTHENTICATED ACADEMIC DATA</span><div className="architecture-flow"><button onClick={()=>setSelectedNode('frontend')} className={selectedNode==='frontend'?'chosen':''}>React + Vite</button><span>→</span><button onClick={()=>setSelectedNode('backend')} className={selectedNode==='backend'?'chosen':''}>Node + Express<br/><small>JWT protected</small></button><span>→</span><button onClick={()=>setSelectedNode('database')} className={selectedNode==='database'?'chosen':''}>MongoDB<br/><small>Mongoose</small></button></div></div>
+      <div className="architecture-lane prediction"><span className="lane-label">PREDICTION REQUEST · NO JWT IN README</span><div className="architecture-flow"><button onClick={()=>setSelectedNode('frontend')} className={selectedNode==='frontend'?'chosen':''}>Prediction page</button><span>→</span><button onClick={()=>setSelectedNode('service')} className={selectedNode==='service'?'chosen':''}>Python + Flask</button><span>→</span><button onClick={()=>setSelectedNode('model')} className={selectedNode==='model'?'chosen':''}>Random Forest<br/><small>Feature scaler</small></button><span>→</span><button onClick={()=>setSelectedNode('response')} className={selectedNode==='response'?'chosen':''}>Score + advice<br/><small>Local history</small></button></div></div></div>
+      <div className="architecture-detail" aria-live="polite"><span className="detail-index">COMPONENT / {String(architectureNodes.findIndex(node=>node.id===selectedNode)+1).padStart(2,'0')}</span><strong>{selected.title}</strong><p>{selected.detail}</p></div>
+    </section>
+    <section className="academic-block"><div className="academic-block-heading"><div><span className="micro-label">02 / MODEL EVALUATION</span><h4>Reported model metrics</h4></div><p>Training report values. Evaluation split is not verified here, so these are not labeled test-set results.</p></div>
+      <div className="reported-metrics">{project.metrics.map((metric,index)=><article key={metric.label} style={{'--metric-delay':`${index*90}ms`}}><span>{metric.label}</span><strong>{metric.display}</strong><div className="reported-track"><i style={{width:`${Math.min(100,metric.value/(metric.label==='MAE'?10:metric.label==='RMSE'?10:1)*100)}%`}}/></div><p>{metric.note}</p></article>)}</div>
+      <div className="model-config"><span>RANDOM FOREST REGRESSOR</span><b>200 trees</b><b>min samples split 5</b><b>max depth unrestricted</b></div>
+    </section>
+    <section className="academic-block"><div className="academic-block-heading"><div><span className="micro-label">03 / FEATURE IMPORTANCE</span><h4>What the model relied on</h4></div><p>Relative feature importance describes model reliance. It does not establish causation or guarantee score changes.</p></div>
+      <div className="importance-chart" role="list" aria-label="Feature importance values as percentages">{project.importance.map(([name,value],index)=><div key={name} role="listitem" className={`importance-row ${index<2?'top-feature':''}`} tabIndex="0" aria-label={`${name}: ${(value*100).toFixed(2)} percent importance`} title={`${name}: ${(value*100).toFixed(2)}%`}><span className="importance-name">{name.replaceAll('_',' ')}</span><span className="importance-track"><i style={{width:`${value/0.5858*100}%`}}/></span><strong>{(value*100).toFixed(2)}%</strong></div>)}</div>
+      <p className="chart-caption"><b>Leading contributors:</b> productivity_score and study_hours_per_day have the two largest reported importance values.</p>
+    </section>
+    <section className="academic-block method-block"><div><span className="micro-label">04 / MACHINE-LEARNING METHOD</span><h4>From student habits to a useful estimate.</h4><p>{project.modelMethod}</p><div className="metric-definitions">{project.metrics.map(metric=><div key={metric.label}><strong>{metric.label}</strong><span>{metric.note}</span></div>)}</div></div><div><span className="micro-label">ENGINEERING CHALLENGES</span><ul>{project.challenges.map(item=><li key={item}>{item}</li>)}</ul></div></section>
+    <section className="academic-block closeout-grid"><article><span className="micro-label">TECHNOLOGY STACK</span><div className="case-tags">{project.stack.map(tag=><span key={tag}>{tag}</span>)}</div></article><article><span className="micro-label">FUTURE IMPROVEMENTS</span><ul>{project.future.map(item=><li key={item}>{item}</li>)}</ul></article></section>
+    <div className="academic-footnote"><span>CASE STUDY / {project.number}</span><span>Prediction history: browser local storage · No live output shown</span></div>
+  </div>;
+}
+
 function ProjectCaseStudy({ project }) {
+  if (project.id === 'academic-tracker') return <AcademicCaseStudy project={project}/>;
   return <div className="case-study" id={`case-${project.id}`}>
     <div className="case-intro"><div><span className="micro-label">CASE STUDY / {project.number}</span><h3>{project.title}</h3><p>{project.overview}</p></div><div className="case-tags">{project.stack.map(tag=><span key={tag}>{tag}</span>)}</div></div>
     <div className="case-grid">
@@ -96,10 +130,10 @@ function App() {
       </section>
 
       <section id="projects" className="section-wrap projects-section">
-        <div className="section-label"><span>02 / SELECTED WORK</span><span>FOUR PROJECTS · DOCUMENTED RESULTS</span></div>
+        <div className="section-label"><span>02 / SELECTED WORK</span><span>FIVE PROJECTS · DOCUMENTED RESULTS</span></div>
         <div className="section-title-row"><div><p className="micro-label">RESEARCH & ENGINEERING</p><h2>Questions worth<br/><span>building around.</span></h2></div><p className="section-lede">A selection of work across vision systems, language models, and applied machine learning.</p></div>
         <div className="filter-row" role="group" aria-label="Filter projects">{categories.map(c=><button key={c} className={filter===c?'selected':''} onClick={()=>setFilter(c)} aria-pressed={filter===c}>{c}</button>)}</div>
-        <div className="project-list">{visibleProjects.map((project,idx)=><article className={`project-card ${openProject===project.id?'expanded':''}`} key={project.id}>
+        <div className="project-list">{visibleProjects.map((project,idx)=><article className={`project-card ${project.id==='academic-tracker'?'academic-featured':''} ${openProject===project.id?'expanded':''}`} key={project.id}>
           <button className="project-trigger" aria-expanded={openProject===project.id} aria-controls={`details-${project.id}`} onClick={()=>setOpenProject(openProject===project.id?null:project.id)}>
             <span className="project-number">{project.number}</span><span className="project-heading"><span className="project-category">{project.category}</span><strong>{project.title}</strong><span className="project-subtitle">{project.subtitle}</span></span><span className="project-summary">{project.description}</span><span className="project-open" aria-hidden="true">{openProject===project.id?'−':'+'}</span>
           </button>

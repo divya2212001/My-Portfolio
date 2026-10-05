@@ -5,11 +5,33 @@ export const profile = {
   socials: [
     { label: 'GitHub', href: 'https://github.com/divya2212001' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/divyanjali-gopisetty-514250344' },
+    { label: 'Codeforces', href: 'https://codeforces.com/profile/divya2212' },
     { label: 'LeetCode', href: 'https://leetcode.com/u/divya2212/' },
   ],
 };
 
 export const projects = [
+  {
+    id: 'academic-tracker', number: '★', title: 'AI-Powered Personalized Academic Tracker', category: 'Applied ML', subtitle: 'Academic planning, paired with score prediction.',
+    description: 'A full-stack academic dashboard with a Random Forest model that estimates exam scores from student habits and lifestyle inputs.',
+    stack: ['React', 'Vite', 'Node.js', 'Express', 'MongoDB', 'Mongoose', 'JWT', 'Python', 'Flask', 'Random Forest'],
+    metrics: [
+      { label: 'MAE', value: 4.1438, max: 10, display: '4.1438', note: 'Average absolute prediction error, expressed in the target score units.' },
+      { label: 'RMSE', value: 5.1905, max: 10, display: '5.1905', note: 'Root mean squared error; larger errors contribute more strongly.' },
+      { label: 'R²', value: 0.8949, max: 1, display: '0.8949', note: 'Proportion of target variance explained by the model.' },
+      { label: 'Cross-validation R²', value: 0.8827, max: 1, display: '0.8827', note: 'R² averaged across validation folds, indicating consistency.' },
+    ],
+    overview: 'An academic management application combining profile, grade, event, and schedule tools with a machine-learning prediction interface. Students enter habits and lifestyle features to receive an estimated exam score and personalized study recommendations.',
+    architecture: ['Academic dashboard', 'Protected APIs', 'MongoDB records', 'Flask ML service', 'Score + recommendations'],
+    details: ['Academic profiles, grades, events, schedules, and authentication are managed by a Node.js + Express API backed by MongoDB and protected with JWT.', 'The prediction page sends habit and lifestyle inputs to a Python + Flask service. Its documented request does not require JWT authentication.', 'Prediction history is stored in browser local storage. No live API response or application screenshot is represented in this case study.'],
+    problem: 'Students often track grades and schedules in separate places, while getting little feedback about how their everyday habits relate to academic outcomes. This project brings planning tools and an ML-based estimate into one interface.',
+    features: ['Academic profile management', 'Grade tracking', 'Event and academic schedule management', 'JWT-based authentication', 'Exam-score prediction from habits and lifestyle features', 'Personalized study recommendations', 'Prediction history in browser local storage'],
+    modelMethod: 'A Random Forest Regressor uses engineered student habit and lifestyle features. A feature scaler prepares inputs for the prediction pipeline; recommendation logic then turns the submitted context into personalized study suggestions. The reported training configuration uses 200 trees, minimum samples split of 5, and no maximum depth limit.',
+    importance: [['productivity_score',0.5858],['study_hours_per_day',0.3374],['sleep_hours',0.0280],['social_media_hours',0.0129],['attendance_percentage',0.0120],['netflix_hours',0.0102],['exercise_frequency',0.0065],['mental_health_rating',0.0057],['sleep_category',0.0014]],
+    challenges: ['Keeping academic-data authentication and the prediction request’s separate Flask path clear in the user experience.', 'Transforming lifestyle inputs into the engineered feature format expected by the trained model.', 'Presenting a useful estimate and recommendation while keeping prediction history in browser storage.'],
+    future: ['Add longitudinal prediction tracking and user-controlled history management.', 'Evaluate performance across clearly documented held-out and validation splits.', 'Expand model diagnostics and recommendation transparency with documented evidence.'],
+    links: [],
+  },
   {
     id: 'viora', number: '01', title: 'Viora AI', category: 'Computer Vision', subtitle: 'Perceptual image quality, made explainable.',
     description: 'A hybrid CNN and computer-vision system for perceptual image-quality prediction and defect analysis.',
