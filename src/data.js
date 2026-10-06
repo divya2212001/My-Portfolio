@@ -1,7 +1,7 @@
 export const profile = {
   name: 'Divyanjali Gopisetty',
   email: 'gopisetty.divyanjali@adypu.edu.in',
-  resume: '/Resume_Divyanjali_Gopisetty.pdf',
+  resume: `${import.meta.env.BASE_URL}Resume_Divyanjali_Gopisetty.pdf`,
   socials: [
     { label: 'GitHub', href: 'https://github.com/divya2212001' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/divyanjali-gopisetty-514250344' },
